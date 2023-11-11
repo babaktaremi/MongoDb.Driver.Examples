@@ -1,4 +1,5 @@
 using Carter;
+using MongoDb.Driver.Examples;
 using MongoDb.Driver.Examples.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -11,6 +12,7 @@ builder.Services.AddCarter();
 builder.Services.AddMongoDb(builder.Configuration["MongoDbConfig:ConnectionString"]!,
     builder.Configuration["MongoDbConfig:DatabaseName"]!);
 
+MappingConfiguration.Configure();
 
 var app = builder.Build();
 

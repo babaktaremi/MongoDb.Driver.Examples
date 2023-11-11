@@ -7,8 +7,7 @@ namespace MongoDb.Driver.Examples.Models.Ads;
 public class AdModel
 {
 
-    [NotMapped]
-    [BsonIgnore]
+    
     public const string CollectionName = "AdsCollection";
 
     public AdModel()
@@ -19,7 +18,6 @@ public class AdModel
         AdId = AdId == ObjectId.Empty ? ObjectId.GenerateNewId() : AdId;
     }
 
-    [BsonId]
     public ObjectId AdId { get; set; }
     public string Name { get;private set; }
     public string Description { get;private set; }
