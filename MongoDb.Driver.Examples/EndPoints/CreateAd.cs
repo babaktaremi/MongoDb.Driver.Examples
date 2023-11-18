@@ -15,8 +15,9 @@ public class CreateAd:ICarterModule
     }
 
 
-    public record CreateAdModel(string Name, string Description, string PublisherId, List<string> Categories);
-    public record CreateAdModelResult(string CreateAdId);
+    private record CreateAdModel(string Name, string Description, string PublisherId, List<string> Categories);
+
+    private record CreateAdModelResult(string CreateAdId);
 
     public void AddRoutes(IEndpointRouteBuilder app)
     {
@@ -44,12 +45,15 @@ public class CreateAd:ICarterModule
 
             var ad = new AdModel() { AdPublisher = publisherId };
 
+          
+            
             ad.SetAdName(model.Name);
             ad.SetAdDescription(model.Description);
             ad.SetAdCategories(adCategories);
 
 
             var adCollection = _mongoDatabase.GetCollection<AdModel>(AdModel.CollectionName);
+
 
             await adCollection.InsertOneAsync(ad);
 
